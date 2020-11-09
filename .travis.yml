@@ -4,21 +4,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t ncwaqas/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t waqas86/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ncwaqas/react-test npm test
+  - docker run -e CI=true waqas86/react-test npm test
 
 after_success:
-  - docker build -t ncwaqas/multi-client ./client
-  - docker build -t ncwaqas/multi-nginx ./nginx
-  - docker build -t ncwaqas/multi-server ./server
-  - docker build -t ncwaqas/multi-worker ./worker
+  - docker build -t waqas86/multi-client ./client
+  - docker build -t waqas86/multi-nginx ./nginx
+  - docker build -t waqas86/multi-server ./server
+  - docker build -t waqas86/multi-worker ./worker
 
   # login to the docker CLI using encrypted variables
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # takes these images and push them to docker hub
-  - docker push ncwaqas/multi-client
-  - docker push ncwaqas/multi-nginx
-  - docker push ncwaqas/multi-server
-  - docker push ncwaqas/multi-worker
+  - docker push waqas86/multi-client
+  - docker push waqas86/multi-nginx
+  - docker push waqas86/multi-server
+  - docker push waqas86/multi-worker
