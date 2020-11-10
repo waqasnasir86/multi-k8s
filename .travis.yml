@@ -23,7 +23,6 @@ after_success:
   - docker push waqas86/multi-server
   - docker push waqas86/multi-worker
 
-
   deploy:
     provider: elasticbeanstalk
     region: 'us-east-1'
