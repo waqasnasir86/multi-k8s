@@ -11,17 +11,17 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project playground-s-11-fcac5dca
+  - gcloud config set project playground-s-11-e90ed7e8
   - gcloud config set compute/zone us-central1-c
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t waqas86/react-test -f ./client/Dockerfile.dev ./client
  
 script:
-    - docker run -e CI=true waqas86/react-test npm test
+  - docker run -e CI=true waqas86/react-test npm test
 
 deploy:
-    provider: script
-    script: bash ./deploy.sh
-    on:
-      branch: master
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
